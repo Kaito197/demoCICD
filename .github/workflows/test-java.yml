@@ -1,0 +1,32 @@
+# Đặt tên cho workflow
+name: Java Test
+
+# Thiết lập trigger cho workflow
+on:
+  pull_request:             # Khi có Pull Request vào nhánh main thì chạy workflow
+    branches:
+      - main
+  push:                     # Khi có thay đổi đẩy lên nhánh main thì chạy workflow
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Test on Windows   # Tên job hiển thị khi chạy CI
+    runs-on: windows-latest # Thiết lập môi trường chạy: Windows mới nhất
+
+    steps:
+      # Bước 1: Tải mã nguồn từ GitHub repository về runner
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Bước 2: Cài đặt JDK 17 từ AdoptOpenJDK (temurin)
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'   # Loại JDK (temurin là bản open của Eclipse)
+          java-version: '17'        # Phiên bản JDK cần dùng
+
+      # Bước 3: Dùng Maven để build và chạy test (verify bao gồm cả test)
+      - name: Build and test on windows
+        run: mvn clean verify       # 'clean' xóa target cũ, 'verify' biên dịch + test + kiểm tra cấu trúc

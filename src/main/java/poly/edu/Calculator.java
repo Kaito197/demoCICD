@@ -1,6 +1,6 @@
 package poly.edu;
 
-public class Calculator implement Icalculator {
+public class Calculator implements Icalculator {
 	public Integer sum(Integer a, Integer b) {
 		return 0;
 	}
