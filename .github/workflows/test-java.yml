@@ -29,4 +29,4 @@ jobs:
 
       # Bước 3: Dùng Maven để build và chạy test (verify bao gồm cả test)
       - name: Build and test on windows
-        run: mvn clean verify       # 'clean' xóa target cũ, 'verify' biên dịch + test + kiểm tra cấu trúc
+        run: mvn clean verify -B -V -e       # 'clean' xóa target cũ, 'verify' biên dịch + test + kiểm tra cấu trúc
